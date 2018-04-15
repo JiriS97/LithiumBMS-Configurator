@@ -5,9 +5,7 @@
  */
 package lithiumbms;
 
-import java.awt.Color;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -105,6 +103,7 @@ public class LithiumBMS extends javax.swing.JFrame {
         jLabel43 = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
         EnableBalancerCheck = new javax.swing.JCheckBox();
+        AutoResetSwFuseCheck = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -153,7 +152,7 @@ public class LithiumBMS extends javax.swing.JFrame {
         AskForDataBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Lithium-BMS Control Panel v1.0");
+        setTitle("Lithium-BMS Control Panel v1.1");
         setName(""); // NOI18N
         setResizable(false);
 
@@ -341,7 +340,10 @@ public class LithiumBMS extends javax.swing.JFrame {
         jLabel49.setText("V");
 
         EnableBalancerCheck.setSelected(true);
-        EnableBalancerCheck.setText("Enable automatic balancer");
+        EnableBalancerCheck.setText("Balancer");
+
+        AutoResetSwFuseCheck.setSelected(true);
+        AutoResetSwFuseCheck.setText("Auto SW fuse reset");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -362,54 +364,55 @@ public class LithiumBMS extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(ResetSwFuseCheck))
+                        .addGap(15, 15, 15)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(LedIndicationCheck))
+                                .addComponent(AutoResetSwFuseCheck)
+                                .addGap(18, 18, 18)
+                                .addComponent(LedIndicationCheck)
+                                .addGap(18, 18, 18)
+                                .addComponent(EnableBalancerCheck))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
+                                .addComponent(ShuntValueText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel45))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(BalancerOnVoltText, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LVoltageCutoffText, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TempCutoffText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                                    .addComponent(CurrentCutoffText, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel42)
+                                    .addComponent(jLabel41)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(ShuntValueText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel45))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(BalancerOnVoltText, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(LVoltageCutoffText, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(TempCutoffText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                                            .addComponent(CurrentCutoffText, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel44))
+                                        .addGap(7, 7, 7)
+                                        .addComponent(filler3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel42)
-                                            .addComponent(jLabel41)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabel44))
-                                                .addGap(7, 7, 7)
-                                                .addComponent(filler3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel38)
-                                                    .addComponent(jLabel39))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(HVoltageCutoffText, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                                                    .addComponent(BalancerOffVoltText))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel43)
-                                                    .addComponent(jLabel49)))))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(CellVoltSensingText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel38)
+                                            .addComponent(jLabel39))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(HVoltageCutoffText, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                                            .addComponent(BalancerOffVoltText))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel46))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(CurrentSensingText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel47))))))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel43)
+                                            .addComponent(jLabel49)))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(CellVoltSensingText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel46))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(CurrentSensingText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel47))))
                     .addComponent(jLabel40)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(LoadConfFromFile)
@@ -418,9 +421,7 @@ public class LithiumBMS extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LoadConfFromDev)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(EnableBalancerCheck)
-                            .addComponent(SaveConfToDev))))
+                        .addComponent(SaveConfToDev)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -489,7 +490,8 @@ public class LithiumBMS extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ResetSwFuseCheck)
                     .addComponent(LedIndicationCheck)
-                    .addComponent(EnableBalancerCheck))
+                    .addComponent(EnableBalancerCheck)
+                    .addComponent(AutoResetSwFuseCheck))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LoadConfFromFile)
@@ -556,23 +558,17 @@ public class LithiumBMS extends javax.swing.JFrame {
         ReadCell6Volt.setText("0.00V");
 
         VoltageCell1Prog.setMaximum(4300);
-        VoltageCell1Prog.setValue(500);
 
         VoltageCell2Prog.setMaximum(4300);
-        VoltageCell2Prog.setValue(1000);
 
         VoltageCell3Prog.setMaximum(4300);
-        VoltageCell3Prog.setValue(2000);
 
         VoltageCell4Prog.setMaximum(4300);
         VoltageCell4Prog.setToolTipText("");
-        VoltageCell4Prog.setValue(3000);
 
         VoltageCell5Prog.setMaximum(4300);
-        VoltageCell5Prog.setValue(4000);
 
         VoltageCell6Prog.setMaximum(4300);
-        VoltageCell6Prog.setValue(4250);
 
         ResetSwFuseBtn.setText("Reset sw fuse");
         ResetSwFuseBtn.setEnabled(false);
@@ -772,9 +768,9 @@ public class LithiumBMS extends javax.swing.JFrame {
                     .addComponent(VoltageCell5Prog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ReadCell6Volt)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel24)
-                        .addComponent(ReadCell6Volt)
                         .addComponent(ReadBal6En))
                     .addComponent(VoltageCell6Prog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
@@ -848,7 +844,7 @@ public class LithiumBMS extends javax.swing.JFrame {
             port = new SerialPort(portName);
             port.openPort();
             port.setParams(9600, 8, 1, 0);
-            setTitle("Lithium-BMS Control Panel v1.0 - Connected to " + PortsComboBox.getSelectedItem().toString());
+            setTitle("Lithium-BMS Control Panel v1.1 - Connected to " + PortsComboBox.getSelectedItem().toString());
             ConnectBtn.setEnabled(false);
             UpdatePortsBtn.setEnabled(false);
             PortsComboBox.setEnabled(false);
@@ -906,7 +902,7 @@ public class LithiumBMS extends javax.swing.JFrame {
         dataTask.cancel();
         try {
             port.closePort();
-            setTitle("Lithium-BMS Control Panel v1.0");
+            setTitle("Lithium-BMS Control Panel v1.1");
             ConnectBtn.setEnabled(true);
             UpdatePortsBtn.setEnabled(true);
             PortsComboBox.setEnabled(true);
@@ -931,8 +927,14 @@ public class LithiumBMS extends javax.swing.JFrame {
             port.writeString("AT+VCUTOFF=" + LVoltageCutoffText.getText() + "," + HVoltageCutoffText.getText() + "\r\n");
             port.writeString("AT+VBAL=" + BalancerOnVoltText.getText() + "," + BalancerOffVoltText.getText() + "\r\n");
             port.writeString("AT+RSENSE=" + ShuntValueText.getText() + "\r\n");
-            port.writeString("AT+USTIME=" + CellVoltSensingText.getText() + "\r\n");
+            port.writeString("AT+VSTIME=" + CellVoltSensingText.getText() + "\r\n");
             port.writeString("AT+ISTIME=" + CurrentSensingText.getText() + "\r\n");
+
+            if (AutoResetSwFuseCheck.isSelected()) {
+                port.writeString("AT+SWFAUTORES=1\r\n");
+            } else {
+                port.writeString("AT+SWFAUTORES=0\r\n");
+            }
 
             if (ResetSwFuseCheck.isSelected()) {
                 port.writeString("AT+BTN=1\r\n");
@@ -963,8 +965,9 @@ public class LithiumBMS extends javax.swing.JFrame {
             port.writeString("AT+VCUTOFF?\r\n");
             port.writeString("AT+VBAL?\r\n");
             port.writeString("AT+RSENSE?\r\n");
-            port.writeString("AT+USTIME?\r\n");
+            port.writeString("AT+VSTIME?\r\n");
             port.writeString("AT+ISTIME?\r\n");
+            port.writeString("AT+SWFAUTORES?\r\n");
             port.writeString("AT+BTN?\r\n");
             port.writeString("AT+LED?\r\n");
             port.writeString("AT+EBAL?\r\n");
@@ -985,30 +988,36 @@ public class LithiumBMS extends javax.swing.JFrame {
                     filePath += ".cfg";
                 }
                 out = new PrintWriter(filePath);
-                out.println("AT+ICUTOFF=" + CurrentCutoffText.getText());
-                out.println("AT+TCUTOFF=" + TempCutoffText.getText());
-                out.println("AT+VCUTOFF=" + LVoltageCutoffText.getText() + "," + HVoltageCutoffText.getText());
-                out.println("AT+VBAL=" + BalancerOnVoltText.getText() + "," + BalancerOffVoltText.getText());
-                out.println("AT+RSENSE=" + ShuntValueText.getText());
-                out.println("AT+USTIME=" + CellVoltSensingText.getText());
-                out.println("AT+ISTIME=" + CurrentSensingText.getText());
+                out.println("+ICUTOFF:" + CurrentCutoffText.getText());
+                out.println("+TCUTOFF:" + TempCutoffText.getText());
+                out.println("+VCUTOFF:" + LVoltageCutoffText.getText() + "," + HVoltageCutoffText.getText());
+                out.println("+VBAL:" + BalancerOnVoltText.getText() + "," + BalancerOffVoltText.getText());
+                out.println("+RSENSE:" + ShuntValueText.getText());
+                out.println("+VSTIME:" + CellVoltSensingText.getText());
+                out.println("+ISTIME:" + CurrentSensingText.getText());
+
+                if (AutoResetSwFuseCheck.isSelected()) {
+                    out.println("+SWFAUTORES:1");
+                } else {
+                    out.println("+SWFAUTORES:0");
+                }
 
                 if (ResetSwFuseCheck.isSelected()) {
-                    out.println("AT+BTN=1");
+                    out.println("+BTN:1");
                 } else {
-                    out.println("AT+BTN=0");
+                    out.println("+BTN:0");
                 }
 
                 if (LedIndicationCheck.isSelected()) {
-                    out.println("AT+LED=1");
+                    out.println("+LED:1");
                 } else {
-                    out.println("AT+LED=0");
+                    out.println("+LED:0");
                 }
 
                 if (EnableBalancerCheck.isSelected()) {
-                    out.println("AT+EBAL=1");
+                    out.println("+EBAL:1");
                 } else {
-                    out.println("AT+EBAL=0");
+                    out.println("+EBAL:0");
                 }
                 out.close();
             } catch (FileNotFoundException ex) {
@@ -1039,7 +1048,7 @@ public class LithiumBMS extends javax.swing.JFrame {
 
     private void ResetSwFuseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetSwFuseBtnActionPerformed
         try {
-            port.writeString("AT+FRESET\r\n");
+            port.writeString("AT+SWFRES\r\n");
         } catch (SerialPortException ex) {
             Logger.getLogger(LithiumBMS.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1131,99 +1140,108 @@ public class LithiumBMS extends javax.swing.JFrame {
 
     private void ParseData(String line) {
         //config
-        if (line.contains("AT+ICUTOFF=")) {
-            String[] parts = line.split("=|,");
+        if (line.contains("+ICUTOFF:")) {
+            String[] parts = line.split(":|,");
             CurrentCutoffText.setText(parts[1]);
-        } else if (line.contains("AT+TCUTOFF=")) {
-            String[] parts = line.split("=|,");
+        } else if (line.contains("+TCUTOFF:")) {
+            String[] parts = line.split(":|,");
             TempCutoffText.setText(parts[1]);
-        } else if (line.contains("AT+VCUTOFF=")) {
-            String[] parts = line.split("=|,");
+        } else if (line.contains("+VCUTOFF:")) {
+            String[] parts = line.split(":|,");
             LVoltageCutoffText.setText(parts[1]);
             HVoltageCutoffText.setText(parts[2]);
-        } else if (line.contains("AT+VBAL=")) {
-            String[] parts = line.split("=|,");
+        } else if (line.contains("+VBAL:")) {
+            String[] parts = line.split(":|,");
             BalancerOnVoltText.setText(parts[1]);
             BalancerOffVoltText.setText(parts[2]);
-        } else if (line.contains("AT+RSENSE=")) {
-            String[] parts = line.split("=|,");
+        } else if (line.contains("+RSENSE:")) {
+            String[] parts = line.split(":|,");
             ShuntValueText.setText(parts[1]);
-        } else if (line.contains("AT+USTIME=")) {
-            String[] parts = line.split("=|,");
+        } else if (line.contains("+VSTIME:")) {
+            String[] parts = line.split(":|,");
             CellVoltSensingText.setText(parts[1]);
-        } else if (line.contains("AT+ISTIME=")) {
-            String[] parts = line.split("=|,");
+        } else if (line.contains("+ISTIME:")) {
+            String[] parts = line.split(":|,");
             CurrentSensingText.setText(parts[1]);
-        } else if (line.contains("AT+BTN=")) {
-            String[] parts = line.split("=|,");
+        }
+         else if (line.contains("+SWFAUTORES:")) {
+            String[] parts = line.split(":|,");
+            if (parts[1].contains("1")) {
+                AutoResetSwFuseCheck.setSelected(true);
+            } else {
+                AutoResetSwFuseCheck.setSelected(false);
+            }
+        } 
+         else if (line.contains("+BTN:")) {
+            String[] parts = line.split(":|,");
             if (parts[1].contains("1")) {
                 ResetSwFuseCheck.setSelected(true);
             } else {
                 ResetSwFuseCheck.setSelected(false);
             }
-        } else if (line.contains("AT+LED=")) {
-            String[] parts = line.split("=|,");
+        } else if (line.contains("+LED:")) {
+            String[] parts = line.split(":|,");
             if (parts[1].contains("1")) {
                 LedIndicationCheck.setSelected(true);
             } else {
                 LedIndicationCheck.setSelected(false);
             }
-        } else if (line.contains("AT+EBAL=")) {
-            String[] parts = line.split("=|,");
+        } else if (line.contains("+EBAL:")) {
+            String[] parts = line.split(":|,");
             if (parts[1].contains("1")) {
                 EnableBalancerCheck.setSelected(true);
             } else {
                 EnableBalancerCheck.setSelected(false);
             }
         } //read data
-        else if (line.contains("AT+VPACK=")) {
-            String[] parts = line.split("=|,");
+        else if (line.contains("+VPACK:")) {
+            String[] parts = line.split(":|,");
             float vPack = Float.valueOf(parts[1]);
             DecimalFormat df = new DecimalFormat();
             df.setMaximumFractionDigits(2);
             df.setMinimumFractionDigits(2);
             ReadPackVoltText.setText(df.format(vPack) + "V");
-        } else if (line.contains("AT+I=")) {
-            String[] parts = line.split("=|,");
+        } else if (line.contains("+I:")) {
+            String[] parts = line.split(":|,");
             float current = Float.valueOf(parts[1]);
             DecimalFormat df = new DecimalFormat();
             df.setMaximumFractionDigits(2);
             df.setMinimumFractionDigits(2);
             ReadPackCurrText.setText(df.format(current) + "A");
-        } else if (line.contains("AT+P=")) {
-            String[] parts = line.split("=|,");
+        } else if (line.contains("+P:")) {
+            String[] parts = line.split(":|,");
             float power = Float.valueOf(parts[1]);
             DecimalFormat df = new DecimalFormat();
             df.setMaximumFractionDigits(2);
             df.setMinimumFractionDigits(2);
             ReadPackPowerText.setText(df.format(power) + "W");
-        } else if (line.contains("AT+T=")) {
-            String[] parts = line.split("=|,");
+        } else if (line.contains("+T:")) {
+            String[] parts = line.split(":|,");
             float temp = Float.valueOf(parts[1]);
             DecimalFormat df = new DecimalFormat();
             df.setMaximumFractionDigits(1);
             df.setMinimumFractionDigits(1);
             ReadPackTempText.setText(df.format(temp) + "°C");
-        } else if (line.contains("AT+NCELLS=")) {
-            String[] parts = line.split("=|,");
+        } else if (line.contains("+NCELLS:")) {
+            String[] parts = line.split(":|,");
             int nCells = Integer.valueOf(parts[1]);
             ReadPackNumCellsText.setText(Integer.toString(nCells));
-        } else if (line.contains("AT+HWFUSE=")) {
-            String[] parts = line.split("=|,");
+        } else if (line.contains("+HWFUSE:")) {
+            String[] parts = line.split(":|,");
             if (parts[1].contains("1")) {
                 ReadHwFuseStatText.setText("OK");
             } else {
                 ReadHwFuseStatText.setText("TRIG");
             }
-        } else if (line.contains("AT+SWFUSE=")) {
-            String[] parts = line.split("=|,");
+        } else if (line.contains("+SWFUSE:")) {
+            String[] parts = line.split(":|,");
             if (parts[1].contains("1")) {
                 ReadSwFuseStatText.setText("OK");
             } else {
                 ReadSwFuseStatText.setText("TRIG");
             }
-        } else if (line.contains("AT+VCELLS=")) {
-            String[] parts = line.split("=|,");
+        } else if (line.contains("+VCELLS:")) {
+            String[] parts = line.split(":|,");
             DecimalFormat df = new DecimalFormat();
             df.setMaximumFractionDigits(2);
             df.setMinimumFractionDigits(2);
@@ -1252,8 +1270,8 @@ public class LithiumBMS extends javax.swing.JFrame {
             cellVoltage = Float.valueOf(parts[6]);
             ReadCell6Volt.setText(df.format(cellVoltage) + "V");
             VoltageCell6Prog.setValue((int) (1000 * cellVoltage));
-        } else if (line.contains("AT+BAL=")) {
-            String[] parts = line.split("=|,");
+        } else if (line.contains("+BAL:")) {
+            String[] parts = line.split(":|,");
             if (parts[1].contains("1")) {
                 ReadBal1En.setText("ON");
             } else {
@@ -1295,6 +1313,7 @@ public class LithiumBMS extends javax.swing.JFrame {
     }
 
     class DataTimerTask extends TimerTask {
+
         @Override
         public void run() {
             AskForDataBtn.doClick();
@@ -1334,6 +1353,7 @@ public class LithiumBMS extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AskForDataBtn;
+    private javax.swing.JCheckBox AutoResetSwFuseCheck;
     private javax.swing.JTextField BalancerOffVoltText;
     private javax.swing.JTextField BalancerOnVoltText;
     private javax.swing.JTextField CellVoltSensingText;
