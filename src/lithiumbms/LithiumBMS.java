@@ -1341,7 +1341,7 @@ public class LithiumBMS extends javax.swing.JFrame {
                             ReceivedPacketsValue.setText(Integer.toString(packetCounter));
                             ParseData(readData);
                             readData = "";
-                        } else if (readData.length() > 32) {
+                        } else if (readData.length() > 64) {
                             readData = "";
                         }
                     }
