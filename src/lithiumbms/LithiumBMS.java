@@ -34,6 +34,7 @@ public class LithiumBMS extends javax.swing.JFrame {
     SerialPort port;
     final JFileChooser fileChooser;
     int packetCounter = 0;
+    int nCells = 0;
     Timer dataTimer;
     TimerTask dataTask;
 
@@ -150,9 +151,13 @@ public class LithiumBMS extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         UpdateRateCB = new javax.swing.JComboBox<>();
         AskForDataBtn = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        boardStatusText = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        PackChargeLevel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Lithium-BMS Control Panel v1.1");
+        setTitle("Lithium-BMS Control Panel v1.4");
         setName(""); // NOI18N
         setResizable(false);
 
@@ -616,6 +621,14 @@ public class LithiumBMS extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setText("Board status: ");
+
+        boardStatusText.setText("OUTPUT OFF");
+
+        jLabel12.setText("Charge level");
+
+        PackChargeLevel.setText("0.0%");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -642,39 +655,19 @@ public class LithiumBMS extends javax.swing.JFrame {
                             .addComponent(ReadPackNumCellsText)
                             .addComponent(ReadSwFuseStatText)))
                     .addComponent(jLabel31)
-                    .addComponent(ResetSwFuseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(UpdateRateCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(AskForDataBtn)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(0, 35, Short.MAX_VALUE)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(VoltageCell6Prog, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
-                                    .addComponent(VoltageCell5Prog, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(VoltageCell4Prog, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(VoltageCell3Prog, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(VoltageCell2Prog, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(VoltageCell1Prog, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(jLabel12)
+                        .addGap(51, 51, 51)
+                        .addComponent(PackChargeLevel)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel18)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(ReadBal1En)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                                 .addComponent(ReadCell1Volt))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel22)
@@ -706,7 +699,36 @@ public class LithiumBMS extends javax.swing.JFrame {
                                 .addComponent(ReadBal3En)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(ReadCell3Volt)))
-                        .addGap(237, 237, 237)))
+                        .addGap(237, 237, 237))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(UpdateRateCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(AskForDataBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ResetSwFuseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(133, 133, 133)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(VoltageCell6Prog, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                                            .addComponent(VoltageCell5Prog, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(VoltageCell4Prog, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(VoltageCell3Prog, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(VoltageCell2Prog, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(VoltageCell1Prog, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(jLabel19)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(boardStatusText)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -778,13 +800,22 @@ public class LithiumBMS extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel31)
-                    .addComponent(ReadSwFuseStatText))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ResetSwFuseBtn)
-                    .addComponent(jLabel4)
-                    .addComponent(UpdateRateCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AskForDataBtn)))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(ReadSwFuseStatText)
+                        .addComponent(jLabel5)
+                        .addComponent(boardStatusText)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(ResetSwFuseBtn)
+                        .addComponent(jLabel4)
+                        .addComponent(UpdateRateCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(AskForDataBtn))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(PackChargeLevel))
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -843,8 +874,8 @@ public class LithiumBMS extends javax.swing.JFrame {
         try {
             port = new SerialPort(portName);
             port.openPort();
-            port.setParams(9600, 8, 1, 0);
-            setTitle("Lithium-BMS Control Panel v1.1 - Connected to " + PortsComboBox.getSelectedItem().toString());
+            port.setParams(115200, 8, 1, 0);
+            setTitle("Lithium-BMS Control Panel v1.4 - Connected to " + PortsComboBox.getSelectedItem().toString());
             ConnectBtn.setEnabled(false);
             UpdatePortsBtn.setEnabled(false);
             PortsComboBox.setEnabled(false);
@@ -857,7 +888,7 @@ public class LithiumBMS extends javax.swing.JFrame {
             UpdateRateCB.setEnabled(true);
             AskForDataBtn.setEnabled(true);
         } catch (SerialPortException ex) {
-            JOptionPane.showMessageDialog(null, "Cannot connect to specified port,\nplese if it is not in use", "Connection Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Cannot connect to specified port,\nplease if it is not in use", "Connection Error", JOptionPane.ERROR_MESSAGE);
         }
 
         try {
@@ -902,7 +933,7 @@ public class LithiumBMS extends javax.swing.JFrame {
         dataTask.cancel();
         try {
             port.closePort();
-            setTitle("Lithium-BMS Control Panel v1.1");
+            setTitle("Lithium-BMS Control Panel v1.4");
             ConnectBtn.setEnabled(true);
             UpdatePortsBtn.setEnabled(true);
             PortsComboBox.setEnabled(true);
@@ -953,6 +984,8 @@ public class LithiumBMS extends javax.swing.JFrame {
             } else {
                 port.writeString("AT+EBAL=0\r\n");
             }
+            
+            port.writeString("AT+SAVE\r\n");
         } catch (SerialPortException ex) {
             Logger.getLogger(LithiumBMS.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1065,6 +1098,8 @@ public class LithiumBMS extends javax.swing.JFrame {
             port.writeString("AT+SWFUSE?\r\n");
             port.writeString("AT+BAL?\r\n");
             port.writeString("AT+VCELLS?\r\n");
+            port.writeString("AT+STATUS?\r\n");
+            port.writeString("AT+PERCENT?\r\n");
         } catch (SerialPortException ex) {
             Logger.getLogger(LithiumBMS.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1163,16 +1198,14 @@ public class LithiumBMS extends javax.swing.JFrame {
         } else if (line.contains("+ISTIME:")) {
             String[] parts = line.split(":|,");
             CurrentSensingText.setText(parts[1]);
-        }
-         else if (line.contains("+SWFAUTORES:")) {
+        } else if (line.contains("+SWFAUTORES:")) {
             String[] parts = line.split(":|,");
             if (parts[1].contains("1")) {
                 AutoResetSwFuseCheck.setSelected(true);
             } else {
                 AutoResetSwFuseCheck.setSelected(false);
             }
-        } 
-         else if (line.contains("+BTN:")) {
+        } else if (line.contains("+BTN:")) {
             String[] parts = line.split(":|,");
             if (parts[1].contains("1")) {
                 ResetSwFuseCheck.setSelected(true);
@@ -1224,21 +1257,29 @@ public class LithiumBMS extends javax.swing.JFrame {
             ReadPackTempText.setText(df.format(temp) + "°C");
         } else if (line.contains("+NCELLS:")) {
             String[] parts = line.split(":|,");
-            int nCells = Integer.valueOf(parts[1]);
+            nCells = Integer.valueOf(parts[1]);
             ReadPackNumCellsText.setText(Integer.toString(nCells));
         } else if (line.contains("+HWFUSE:")) {
             String[] parts = line.split(":|,");
-            if (parts[1].contains("1")) {
+            if (parts[1].contains("0")) {
                 ReadHwFuseStatText.setText("OK");
             } else {
                 ReadHwFuseStatText.setText("TRIG");
             }
         } else if (line.contains("+SWFUSE:")) {
             String[] parts = line.split(":|,");
-            if (parts[1].contains("1")) {
+            if (parts[1].contains("0")) {
                 ReadSwFuseStatText.setText("OK");
+            } else if (parts[1].contains("1")) {
+                ReadSwFuseStatText.setText("OVER_I");
+            } else if (parts[1].contains("2")) {
+                ReadSwFuseStatText.setText("UNDER_V");
+            } else if (parts[1].contains("3")) {
+                ReadSwFuseStatText.setText("OVER_V");
+            } else if (parts[1].contains("4")) {
+                ReadSwFuseStatText.setText("OVER_T");
             } else {
-                ReadSwFuseStatText.setText("TRIG");
+                ReadSwFuseStatText.setText("ERR");
             }
         } else if (line.contains("+VCELLS:")) {
             String[] parts = line.split(":|,");
@@ -1247,29 +1288,60 @@ public class LithiumBMS extends javax.swing.JFrame {
             df.setMinimumFractionDigits(2);
             float cellVoltage;
 
-            cellVoltage = Float.valueOf(parts[1]);
-            ReadCell1Volt.setText(df.format(cellVoltage) + "V");
-            VoltageCell1Prog.setValue((int) (1000 * cellVoltage));
+            if (nCells >= 1) {
+                cellVoltage = Float.valueOf(parts[1]);
+                ReadCell1Volt.setText(df.format(cellVoltage) + "V");
+                VoltageCell1Prog.setValue((int) (1000 * cellVoltage));
+            } else {
+                ReadCell1Volt.setText("N/A");
+                VoltageCell1Prog.setValue(0);
+            }
 
-            cellVoltage = Float.valueOf(parts[2]);
-            ReadCell2Volt.setText(df.format(cellVoltage) + "V");
-            VoltageCell2Prog.setValue((int) (1000 * cellVoltage));
+            if (nCells >= 2) {
+                cellVoltage = Float.valueOf(parts[2]);
+                ReadCell2Volt.setText(df.format(cellVoltage) + "V");
+                VoltageCell2Prog.setValue((int) (1000 * cellVoltage));
+            } else {
+                ReadCell2Volt.setText("N/A");
+                VoltageCell2Prog.setValue(0);
+            }
 
-            cellVoltage = Float.valueOf(parts[3]);
-            ReadCell3Volt.setText(df.format(cellVoltage) + "V");
-            VoltageCell3Prog.setValue((int) (1000 * cellVoltage));
+            if (nCells >= 3) {
+                cellVoltage = Float.valueOf(parts[3]);
+                ReadCell3Volt.setText(df.format(cellVoltage) + "V");
+                VoltageCell3Prog.setValue((int) (1000 * cellVoltage));
+            } else {
+                ReadCell3Volt.setText("N/A");
+                VoltageCell3Prog.setValue(0);
+            }
 
-            cellVoltage = Float.valueOf(parts[4]);
-            ReadCell4Volt.setText(df.format(cellVoltage) + "V");
-            VoltageCell4Prog.setValue((int) (1000 * cellVoltage));
+            if (nCells >= 4) {
+                cellVoltage = Float.valueOf(parts[4]);
+                ReadCell4Volt.setText(df.format(cellVoltage) + "V");
+                VoltageCell4Prog.setValue((int) (1000 * cellVoltage));
+            } else {
+                ReadCell4Volt.setText("N/A");
+                VoltageCell4Prog.setValue(0);
+            }
 
-            cellVoltage = Float.valueOf(parts[5]);
-            ReadCell5Volt.setText(df.format(cellVoltage) + "V");
-            VoltageCell5Prog.setValue((int) (1000 * cellVoltage));
+            if (nCells >= 5) {
+                cellVoltage = Float.valueOf(parts[5]);
+                ReadCell5Volt.setText(df.format(cellVoltage) + "V");
+                VoltageCell5Prog.setValue((int) (1000 * cellVoltage));
+            } else {
+                ReadCell5Volt.setText("N/A");
+                VoltageCell5Prog.setValue(0);
+            }
 
-            cellVoltage = Float.valueOf(parts[6]);
-            ReadCell6Volt.setText(df.format(cellVoltage) + "V");
-            VoltageCell6Prog.setValue((int) (1000 * cellVoltage));
+            if (nCells >= 6) {
+                cellVoltage = Float.valueOf(parts[6]);
+                ReadCell6Volt.setText(df.format(cellVoltage) + "V");
+                VoltageCell6Prog.setValue((int) (1000 * cellVoltage));
+            } else {
+                ReadCell6Volt.setText("N/A");
+                VoltageCell6Prog.setValue(0);
+            }
+
         } else if (line.contains("+BAL:")) {
             String[] parts = line.split(":|,");
             if (parts[1].contains("1")) {
@@ -1307,8 +1379,28 @@ public class LithiumBMS extends javax.swing.JFrame {
             } else {
                 ReadBal6En.setText("OFF");
             }
+        } else if (line.contains("+STATUS:")) {
+            String[] parts = line.split(":|,");
+            if (parts[1].contains("0")) boardStatusText.setText("OUTPUT OFF");
+            else if (parts[1].contains("1")) boardStatusText.setText("DISCHARGING");
+            else if (parts[1].contains("2")) boardStatusText.setText("CHARGING");
+            else if (parts[1].contains("3")) boardStatusText.setText("CHARGING/BALANCING");
+            else if (parts[1].contains("4")) boardStatusText.setText("CHARGING FINISHED");
+            else if (parts[1].contains("5")) boardStatusText.setText("CAN NOT CHARGE - VOLTAGE TOO LOW");
+            else if (parts[1].contains("6")) boardStatusText.setText("CAN NOT CHARGE - VOLTAGE TOO HIGH");
+        } else if (line.contains("+PERCENT:")) {
+            String[] parts = line.split(":|,");
+            float temp = Float.valueOf(parts[1]);
+            DecimalFormat df = new DecimalFormat();
+            df.setMaximumFractionDigits(1);
+            df.setMinimumFractionDigits(1);
+            PackChargeLevel.setText(df.format(temp) + "%");
+        } else if (line.contains("OK")) {
+            ;
+        } else if (line.contains("ERROR")) {
+            JOptionPane.showMessageDialog(null, "Error received!", "Board error", JOptionPane.ERROR_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(null, "Unknown data read!", "Data error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Unknown data read!\n"+line, "Data error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -1367,6 +1459,7 @@ public class LithiumBMS extends javax.swing.JFrame {
     private javax.swing.JCheckBox LedIndicationCheck;
     private javax.swing.JButton LoadConfFromDev;
     private javax.swing.JButton LoadConfFromFile;
+    private javax.swing.JLabel PackChargeLevel;
     private javax.swing.JComboBox<String> PortsComboBox;
     private javax.swing.JLabel ReadBal1En;
     private javax.swing.JLabel ReadBal2En;
@@ -1403,12 +1496,14 @@ public class LithiumBMS extends javax.swing.JFrame {
     private javax.swing.JProgressBar VoltageCell4Prog;
     private javax.swing.JProgressBar VoltageCell5Prog;
     private javax.swing.JProgressBar VoltageCell6Prog;
+    private javax.swing.JLabel boardStatusText;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -1438,6 +1533,7 @@ public class LithiumBMS extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
